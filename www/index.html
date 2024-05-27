@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>CRSA - Citizens Reporting Solution App</title>
+  </head>
+  <body>
+    <div class="app-page">
+      <div class="app-topbar">
+        <div class="app-title">
+          <h1>Citizens Reporting Solution App</h1>
+        </div>
+        <nav>
+          <p>Please report an incidence around you</p>
+          <a href="login.html" id="authenticate" class="app-button"
+            >Add Incidence</a
+          >
+        </nav>
+      </div>
+
+      <main>
+        <div class="filter">
+          <label for="categoryFilter">Filter: </label>
+          <select id="categoryFilter">
+            <option value="">All Categories</option>
+          </select>
+          <button id="filterButton" class="app-button">Apply Filter</button>
+        </div>
+        <div class="card-wrapper" id="cardWrapper"></div>
+      </main>
+      <footer>
+        <p>Citizens Reporting Solution App</p>
+        <span>Be your brother's keeper</span>
+      </footer>
+    </div>
+    <!-- <script src="cordova.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script> -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+
+      // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+
+      // Add Firebase products that you want to use
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+      import { getMessaging } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-messaging.js";
+
+      // TODO: Replace the following with your app's Firebase project configuration
+      const firebaseConfig = {
+        apiKey: "BE2fIJRmC0oig71bwCUG23Qz1h1gwhaBJUUU9qlrY-VbzAuy_rKGuRd37BA9bX8SHaIB6F3iJ5yb8b24u3lZS34",
+        authDomain: "citizen-report-solution-app.firebaseapp.com",
+        projectId: "citizen-report-solution-app",
+        storageBucket: "citizen-report-solution-app.appspot.com",
+        messagingSenderId: '423722687960',
+        appId: "1:423722687960:android:7cb73534d640237deb66ad",
+        measurementId: "YOUR_MEASUREMENT_ID",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      // Initialize Firebase Cloud Messaging and get a reference to the service
+      const messaging = getMessaging(app);
+
+      // Handle incoming FCM messages
+const message = firebase.messaging();
+
+message.onMessage((payload) => {
+  console.log("Received FCM Message:", payload);
+  // Handle the incoming message, e.g., display a notification
+});
+    </script>
+
+    <script type="module" src="js/index.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

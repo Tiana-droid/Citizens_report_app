@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"
+  />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta
+    name="viewport"
+    content="initial-scale=1, width=device-width, viewport-fit=cover"
+  />
+  <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>CRSA - Login Page</title>
+  </head>
+  <body>
+    <div class="app-page">
+      <div class="app-topbar">
+        <div class="app-title">
+          <h1>Login Page</h1>
+        </div>
+      </div>
+
+      <form action="">
+        <input type="text" id="email" placeholder="Email">
+        <p id="email-error" class="error" style="color: red;"></p>
+        
+        <input type="password" id="password" placeholder="Password">
+        <p id="password-error" class="error" style="color: red;"></p>
+        
+        <button id="login-btn">Login</button>
+        <p id="login-message" class="success" style="color: green;"></p>
+        
+      </form>
+
+      <p class="sign-up">Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
+    <script type="module" src="js/index.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>
