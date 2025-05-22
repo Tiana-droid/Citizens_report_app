@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "423722687960",
     "project_id": "citizen-report-solution-app",
-    "storage_bucket": "citizen-report-solution-app.appspot.com"
+    "storage_bucket": "citizen-report-solution-app.firebasestorage.app"
   },
   "client": [
     {

@@ -20,31 +20,64 @@
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 
-// import { initializeApp } from '/node_modules/firebase/app/dist/app/index.d.ts';
-// import firebase from 'firebase/app';
+
+document.addEventListener('deviceready', function () {
+  // Optional: Grant permission for iOS
+  window.FirebasePlugin.grantPermission();
+
+  // Get the FCM token
+  window.FirebasePlugin.getToken(function (token) {
+    console.log("FCM Token: " + token);
+    // Save this token to your backend to target this device
+  }, function (error) {
+    console.error("Error getting token", error);
+  });
+
+  window.FirebasePlugin.subscribe("all");
+
+  // Listen for notifications
+  window.FirebasePlugin.onMessageReceived(function (message) {
+    console.log("Notification received: ", message);
+
+    if (message.tap) {
+      // App was in background and notification was tapped
+      alert("Tapped notification: " + message.title);
+    } else {
+      // App was in foreground when notification arrived
+      alert("Foreground notification: " + message.title);
+    }
+  }, function (error) {
+    console.error("Failed to receive message", error);
+  });
+});
 
 
 
-// FCMPlugin.getToken(function (token) {
-//   //this is the FCM token which can be used
-//   //to send notification to specific device
-//   console.log(token);
-//   FCMPlugin.onNotification(
-//     onNotificationCallback(data),
-//     successCallback(msg),
-//     errorCallback(err)
-//   );
-//   //Here you define your application behaviour based on the notification data.
-//   FCMPlugin.onNotification(function (data) {
-//     console.log(data);
-//     //data.wasTapped == true means in Background :  Notification was received on device tray and tapped by the user.
-//     //data.wasTapped == false means in foreground :  Notification was received in foreground. Maybe the user needs to be notified.
-//     if (data.wasTapped) {
-//       //Notification was received on device tray and tapped by the user.
-//       alert(JSON.stringify(data));
-//     } else {
-//       //Notification was received in foreground. Maybe the user needs to be notified.
-//       alert(JSON.stringify(data));
-//     }
-//   });
+// // Handle incoming FCM messages
+
+// const admin = require("firebase-admin");
+
+// // // Initialize Firebase Admin SDK
+// admin.initializeApp({
+//   credential: admin.credential.cert("/citizen-report-solution-app-firebase-adminsdk-ahk08-493b3d996a.json"),
+//   databaseURL: "https://citizen-report-solution-app.firebaseio.com"
 // });
+
+// // Function to send notification
+// async function sendNotification() {
+//   const message = {
+//     notification: {
+//       title: "New Post",
+//       body: "A new post has been added!",
+//     },
+//     topic: "new_post",
+//   };
+
+//   try {
+//     const response = await admin.messaging().send(message);
+//     console.log("Notification sent:", response);
+//   } catch (error) {
+//     console.error("Error sending notification:", error);
+//   }
+// }
+// sendNotification();

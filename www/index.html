@@ -51,7 +51,7 @@
           >
         </nav>
       </div>
-      
+
       <main>
         <div class="filter">
           <label for="categoryFilter">Filter: </label>
@@ -68,41 +68,45 @@
       </footer>
     </div>
     <!-- <script src="cordova.js"></script> -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script> -->
+    
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script> -->
+    
+    <!-- If you're using Firebase Authentication -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script> -->
+    
+    <!-- If you're using Firebase Cloud Messaging (for push notifications) -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js"></script> -->
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+      // // Add Firebase products that you want to use
+      // import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+      // import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-      // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+      import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-messaging.js";
 
-      // Add Firebase products that you want to use
-      import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-
-      import { getMessaging } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-messaging.js";
+      
 
       // TODO: Replace the following with your app's Firebase project configuration
       const firebaseConfig = {
-        apiKey: "BE2fIJRmC0oig71bwCUG23Qz1h1gwhaBJUUU9qlrY-VbzAuy_rKGuRd37BA9bX8SHaIB6F3iJ5yb8b24u3lZS34",
+        apiKey: "AIzaSyD9zA-CZn3vR7_5gYkpCeKiP9Xcp-nRcgo",
         authDomain: "citizen-report-solution-app.firebaseapp.com",
         projectId: "citizen-report-solution-app",
         storageBucket: "citizen-report-solution-app.appspot.com",
-        messagingSenderId: '423722687960',
+        messagingSenderId: "423722687960",
         appId: "1:423722687960:android:7cb73534d640237deb66ad",
-        measurementId: "YOUR_MEASUREMENT_ID",
+        // measurementId: "YOUR_MEASUREMENT_ID",
       };
 
-      const app = initializeApp(firebaseConfig);
+      const appS = initializeApp(firebaseConfig);
       // Initialize Firebase Cloud Messaging and get a reference to the service
-      const messaging = getMessaging(app);
+      const messaging = getMessaging(appS);
 
       // Handle incoming FCM messages
-const message = firebase.messaging();
-
-message.onMessage((payload) => {
-  console.log("Received FCM Message:", payload);
-  // Handle the incoming message, e.g., display a notification
-});
+      // const message = messaging();
+      onMessage(messaging, (payload) => {
+        console.log("Received FCM Message:", payload);
+        // Handle the incoming message, e.g., display a notification
+      });
     </script>
 
     <script type="module" src="js/index.js"></script>
