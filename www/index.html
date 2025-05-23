@@ -105,6 +105,21 @@
         console.log("Received FCM Message:", payload);
         // Handle the incoming message, e.g., display a notification
       });
+
+      getToken(messaging, {
+  vapidKey: "BE2fIJRmC0oig71bwCUG23Qz1h1gwhaBJUUU9qlrY-VbzAuy_rKGuRd37BA9bX8SHaIB6F3iJ5yb8b24u3lZS34", // You get this from Firebase Console
+})
+  .then((currentToken) => {
+    if (currentToken) {
+      console.log("Device FCM Token:", currentToken);
+      // ⬅️ Send this token to your backend via fetch()
+    } else {
+      console.warn("No token available. Request permission to generate one.");
+    }
+  })
+  .catch((err) => {
+    console.error("An error occurred while retrieving token. ", err);
+  });
     </script>
 
     <script type="module" src="js/index.js"></script>
