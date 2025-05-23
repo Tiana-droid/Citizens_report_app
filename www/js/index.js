@@ -57,15 +57,8 @@ fetch("https://citizens-report-app.onrender.com/notify", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    token: "<user-fcm-token>",
+    token: "dX3it8RsOn6k-SX0XmPfUP:APA91bHwhF-_QE3IQhWsd4sOobNZZxJua7Kx89TquC9JIuQl5IVf6ogIMeIzE9Iss0zrVe3AqlCXW57xsvdaP0pr403mN9zMN56TnwVznOa9rSBuZCJGyVI",
     title: "New Incident Reported!",
     body: "Click to view the latest incident.",
   }),
 });
-
-// const lat = incident.location.lat;
-// const lng = incident.location.lng;
-
-// const miniMap = L.map('mini-map').setView([lat, lng], 13);
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMap);
-// L.marker([lat, lng]).addTo(miniMap);

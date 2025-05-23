@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-firebase-messaging","cordova-support-android-plugin"]}
+{"plugins":["cordova-plugin-firebase-messaging","cordova-support-android-plugin","cordova-plugin-firebasex"]}

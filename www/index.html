@@ -38,8 +38,7 @@
     <link rel="stylesheet" href="css/index.css" />
     <title>CRSA - Citizens Reporting Solution App</title>
     <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   </head>
   <body>
     <div class="app-page">
@@ -71,19 +70,20 @@
       </footer>
     </div>
 
-
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
       // // Add Firebase products that you want to use
       // import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
       // import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-      import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-messaging.js";
+      import {
+        getMessaging,
+        onMessage,
+        getToken,
+      } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-messaging.js";
 
-      
       const firebaseConfig = {
         apiKey: "AIzaSyD9zA-CZn3vR7_5gYkpCeKiP9Xcp-nRcgo",
         authDomain: "citizen-report-solution-app.firebaseapp.com",
@@ -107,19 +107,21 @@
       });
 
       getToken(messaging, {
-  vapidKey: "BE2fIJRmC0oig71bwCUG23Qz1h1gwhaBJUUU9qlrY-VbzAuy_rKGuRd37BA9bX8SHaIB6F3iJ5yb8b24u3lZS34", // You get this from Firebase Console
-})
-  .then((currentToken) => {
-    if (currentToken) {
-      console.log("Device FCM Token:", currentToken);
-      // ⬅️ Send this token to your backend via fetch()
-    } else {
-      console.warn("No token available. Request permission to generate one.");
-    }
-  })
-  .catch((err) => {
-    console.error("An error occurred while retrieving token. ", err);
-  });
+        vapidKey:
+          "BE2fIJRmC0oig71bwCUG23Qz1h1gwhaBJUUU9qlrY-VbzAuy_rKGuRd37BA9bX8SHaIB6F3iJ5yb8b24u3lZS34", // You get this from Firebase Console (Project Settings > Cloud Messaging > Web Push certificates)
+      })
+        .then((currentToken) => {
+          if (currentToken) {
+            // console.log("Device FCM Token:", currentToken);
+          } else {
+            console.warn(
+              "No token available. Request permission to generate one."
+            );
+          }
+        })
+        .catch((err) => {
+          console.error("An error occurred while retrieving token. ", err);
+        });
     </script>
 
     <script type="module" src="js/index.js"></script>
