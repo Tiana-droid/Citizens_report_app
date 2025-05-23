@@ -75,7 +75,7 @@ createForm.addEventListener("submit", async function (event) {
     statusDiv.textContent = "Incident Posted Successfully";
     createForm.reset();
     setTimeout(() => {
-      window.location.href = "/www";
+      window.location.href = "/";
     }, 1000);
   } catch (error) {
     console.error("Error creating new incident:", error.message);
