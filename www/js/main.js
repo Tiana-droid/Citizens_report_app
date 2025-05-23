@@ -23,7 +23,18 @@ function displayIncidents(incidents) {
   const cardWrapper = document.getElementById("cardWrapper");
   cardWrapper.innerHTML = ""; // Clear previous content
 
-  incidents.forEach((incident) => {
+  incidents.forEach((incident, index) => {
+
+    // Unique map ID
+    const mapId = `mini-map-${index}`;
+
+    let mapHTML = "";
+    if (incident.location && incident.location.lat && incident.location.lng) {
+      mapHTML = `<div id="${mapId}" style="height: 200px;"></div>`;
+    } else {
+      `<p>No location available</p>`
+    }
+    // Create HTML card with unique map container
     const showIncidence = `
       <div class="card">
         <b>${incident.date}</b>
@@ -31,11 +42,24 @@ function displayIncidents(incidents) {
         <img src="data:${incident.type};base64,${incident.img}" alt="${incident.filename}" />
         <p>${incident.content}</p>
         <p>Category: ${incident.category}</p>
+        <p>Address: ${incident.address}</p>
+         ${incident.location && incident.location.lat && incident.location.lng ? `${mapHTML}` : `<p>No location available</p>`}
       </div>
     `;
+
     cardWrapper.innerHTML += showIncidence;
+
+    // Initialize map only if location data is present
+    if (incident.location && incident.location.lat && incident.location.lng) {
+      setTimeout(() => {
+        const miniMap = L.map(mapId).setView([incident.location.lat, incident.location.lng], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMap);
+        L.marker([incident.location.lat, incident.location.lng]).addTo(miniMap);
+      }, 0);
+    }
   });
 }
+
 
 function populateCategoryFilter(incidents) {
   const categoryFilter = document.getElementById("categoryFilter");
@@ -75,3 +99,6 @@ document.getElementById("filterButton").addEventListener("click", async () => {
     console.error(error);
   }
 })();
+
+// Fetch and display incidents
+

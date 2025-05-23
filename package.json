@@ -67,7 +67,9 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "firebase": "^10.9.0",
-    "firebase-admin": "^13.4.0"
+    "firebase-admin": "^13.4.0",
+    "uuid": "^11.1.0"
   }
 }

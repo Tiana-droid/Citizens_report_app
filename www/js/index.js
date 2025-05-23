@@ -51,33 +51,21 @@ document.addEventListener('deviceready', function () {
   });
 });
 
+fetch("https://citizens-report-app.onrender.com/notify", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    token: "<user-fcm-token>",
+    title: "New Incident Reported!",
+    body: "Click to view the latest incident.",
+  }),
+});
 
+// const lat = incident.location.lat;
+// const lng = incident.location.lng;
 
-// // Handle incoming FCM messages
-
-// const admin = require("firebase-admin");
-
-// // // Initialize Firebase Admin SDK
-// admin.initializeApp({
-//   credential: admin.credential.cert("/citizen-report-solution-app-firebase-adminsdk-ahk08-493b3d996a.json"),
-//   databaseURL: "https://citizen-report-solution-app.firebaseio.com"
-// });
-
-// // Function to send notification
-// async function sendNotification() {
-//   const message = {
-//     notification: {
-//       title: "New Post",
-//       body: "A new post has been added!",
-//     },
-//     topic: "new_post",
-//   };
-
-//   try {
-//     const response = await admin.messaging().send(message);
-//     console.log("Notification sent:", response);
-//   } catch (error) {
-//     console.error("Error sending notification:", error);
-//   }
-// }
-// sendNotification();
+// const miniMap = L.map('mini-map').setView([lat, lng], 13);
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMap);
+// L.marker([lat, lng]).addTo(miniMap);

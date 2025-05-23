@@ -37,6 +37,9 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="css/index.css" />
     <title>CRSA - Citizens Reporting Solution App</title>
+    <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
   </head>
   <body>
     <div class="app-page">
@@ -67,15 +70,11 @@
         <span>Be your brother's keeper</span>
       </footer>
     </div>
-    <!-- <script src="cordova.js"></script> -->
-    
-    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script> -->
-    
-    <!-- If you're using Firebase Authentication -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script> -->
-    
-    <!-- If you're using Firebase Cloud Messaging (for push notifications) -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js"></script> -->
+
+
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
       // // Add Firebase products that you want to use
@@ -85,8 +84,6 @@
       import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-messaging.js";
 
       
-
-      // TODO: Replace the following with your app's Firebase project configuration
       const firebaseConfig = {
         apiKey: "AIzaSyD9zA-CZn3vR7_5gYkpCeKiP9Xcp-nRcgo",
         authDomain: "citizen-report-solution-app.firebaseapp.com",
@@ -102,7 +99,8 @@
       const messaging = getMessaging(appS);
 
       // Handle incoming FCM messages
-      // const message = messaging();
+      // This will only trigger if your app is in the foreground
+      // and the message is received while the app is open
       onMessage(messaging, (payload) => {
         console.log("Received FCM Message:", payload);
         // Handle the incoming message, e.g., display a notification

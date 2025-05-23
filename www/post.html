@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="css/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRSA - Post</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />  
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Leaflet CSS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   </head>
   <body>
     <div class="app-page">
@@ -34,24 +41,41 @@
           required
         /><br /><br />
 
-        <label for="date">Date:</label><br/>
-        <input type="date" name="date" id="date"> <br/> <br/>
+        <label for="date">Date:</label><br />
+        <input type="date" name="date" id="date" required/> <br />
+        <br />
 
         <label for="title">Title:</label><br />
         <input type="text" id="title" name="title" required /><br /><br />
 
         <label for="content">Content:</label><br />
         <textarea id="content" name="content" required></textarea><br /><br />
-        <label for="">Upload image (<i>image must not be more than 60kb</i>)</label>
-        <input type="file" id="imageInput" accept="image/*" required><br /><br />
-        <label>Location</label> <br/>
-        <input type="text" name="location" id="location"><br /><br />
+        <label for=""
+          >Upload image (<i>image must not be more than 60kb</i>)</label
+        >
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/*"
+          required
+        /><br /><br />
+        <label>Location</label> <br />
+        <input type="text" id="addressInput" placeholder="Enter location address" required />
+        <button type="button" id="locateBtn">Locate on Map</button>
+        <div id="map" style="height: 300px"></div>
+        <input type="hidden" id="latitude" />
+        <input type="hidden" id="longitude" /> 
+        <br> <br>
 
-        <button  type="submit">Update</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/umd/uuidv4.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/umd/uuid.min.js"></script>
+   
     <script type="module" src="js/index.js"></script>
     <script src="js/post.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+    <!-- Leaflet JS -->
   </body>
 </html>
