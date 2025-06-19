@@ -11,7 +11,9 @@ createForm.addEventListener("submit", async function (event) {
   const newDate = document.getElementById("datePickerId").value;
   const imageInput = document.getElementById("imageInput").files[0];
   const newAddress = document.getElementById("addressInput").value;
+
   try {
+    //convert image to base64
     const base64Image = await getBase64(imageInput);
 
     const recordResponse = await fetch(
@@ -43,8 +45,8 @@ createForm.addEventListener("submit", async function (event) {
       address: newAddress,
       location: {
         lat: document.getElementById("latitude").value,
-        lng: document.getElementById("longitude").value
-      }
+        lng: document.getElementById("longitude").value,
+      },
     };
 
     const addNewIncidents = [...recordData.record.incidents, newIncident];
@@ -72,14 +74,14 @@ createForm.addEventListener("submit", async function (event) {
 
     const updatedData = await updateResponse.json();
     console.log("New incident created:", updatedData);
-    statusDiv.textContent = "Incident Posted Successfully";
+    alert("Incident Posted Successfully");
     createForm.reset();
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
   } catch (error) {
     console.error("Error creating new incident:", error.message);
-    statusDiv.textContent = "Error creating incident";
+    alert("Error creating incident");
   }
 });
 
@@ -97,11 +99,13 @@ document.getElementById("locateBtn").addEventListener("click", async () => {
   const address = document.getElementById("addressInput").value.trim();
   if (!address) return alert("Please enter an address");
 
-  const url = await fetch(`https://citizens-report-app.onrender.com/geocode?address=${encodeURIComponent(address)}`);
-
+  const response = await fetch(
+    `https://citizens-report-app.onrender.com/geocode?address=${encodeURIComponent(
+      address
+    )}`
+  );
 
   try {
-    const response = await fetch(url);
     const data = await response.json();
 
     if (data.length === 0) {
@@ -116,19 +120,19 @@ document.getElementById("locateBtn").addEventListener("click", async () => {
       map.remove(); // reset previous map instance
     }
     map = L.map("map").setView([lat, lon], 13);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
 
-        L.marker([lat, lon]).addTo(map).bindPopup("Incident Location").openPopup();
-        document.getElementById('latitude').value = lat;
-  document.getElementById('longitude').value = lon;
+    L.marker([lat, lon]).addTo(map).bindPopup("Incident Location").openPopup();
+    document.getElementById("latitude").value = lat;
+    document.getElementById("longitude").value = lon;
   } catch (error) {
     console.error("Error fetching location data:", error);
     alert("Error fetching location data.");
     return;
   }
-})
+});
 
 // Set the date input to today's date and restrict future dates
 datePickerId.max = new Date().toISOString().split("T")[0];
