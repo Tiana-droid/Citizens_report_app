@@ -1,4 +1,5 @@
 const express = require("express");
+const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
 const admin = require("firebase-admin");
 const cors = require('cors');
@@ -33,6 +34,28 @@ app.post("/notify", async (req, res) => {
     res.status(200).send({ success: true, response });
   } catch (error) {
     res.status(500).send({ success: false, error: error.message });
+  }
+});
+
+
+
+app.get("/geocode", async (req, res) => {
+  const address = req.query.address;
+  if (!address) {
+    return res.status(400).json({ error: "Missing address" });
+  }
+
+  try {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`, {
+      headers: {
+        'User-Agent': 'citizens-report-app (adelusic@gmail.com)'
+      }
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Geocode error:", err);
+    res.status(500).json({ error: "Failed to fetch geocode data" });
   }
 });
 

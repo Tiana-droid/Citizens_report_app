@@ -15,7 +15,7 @@
     <meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="css/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRSA - Post</title>
+    <title>CRSA - Post An Incidence</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />  
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -34,15 +34,26 @@
       <div id="status"></div>
       <form id="createForm">
         <label for="incidentType">What type of Incidence is this?:</label><br />
-        <input
-          type="text"
-          id="incidentType"
-          name="incidentType"
-          required
-        /><br /><br />
+        <select name="incidentType" id="incidentType" required>
+          <option value="Accident">Accident</option>
+          <option value="Fire">Fire</option>
+          <option value="Flood">Flood</option>
+          <option value="Robbery">Robbery</option>
+          <option value="Theft">Theft</option>
+          <option value="Assault">Assault</option>
+          <option value="Vandalism">Vandalism</option>
+          <option value="Domestic Violence">Domestic Violence</option>
+          <option value="Missing Person">Missing Person</option>
+          <option value="Drug-related">Drug-related</option>
+          <option value="Traffic Violation">Traffic Violation</option>
+          <option value="Rioting">Rioting</option>
+          <option value="Cybercrime">Cybercrime</option>
+          <option value="Other">Other</option>
+        </select>
+        <br /><br />
 
-        <label for="date">Date:</label><br />
-        <input type="date" name="date" id="date" required/> <br />
+        <label for="datePickerId">Date:</label><br />
+        <input type="date" name="date" id="datePickerId" required/> <br />
         <br />
 
         <label for="title">Title:</label><br />

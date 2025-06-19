@@ -8,7 +8,7 @@ createForm.addEventListener("submit", async function (event) {
   const newCategory = document.getElementById("incidentType").value;
   const newTitle = document.getElementById("title").value;
   const newContent = document.getElementById("content").value;
-  const newDate = document.getElementById("date").value;
+  const newDate = document.getElementById("datePickerId").value;
   const imageInput = document.getElementById("imageInput").files[0];
   const newAddress = document.getElementById("addressInput").value;
   try {
@@ -97,7 +97,8 @@ document.getElementById("locateBtn").addEventListener("click", async () => {
   const address = document.getElementById("addressInput").value.trim();
   if (!address) return alert("Please enter an address");
 
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+  const url = await fetch(`https://citizens-report-app.onrender.com/geocode?address=${encodeURIComponent(address)}`);
+
 
   try {
     const response = await fetch(url);
@@ -129,3 +130,5 @@ document.getElementById("locateBtn").addEventListener("click", async () => {
   }
 })
 
+// Set the date input to today's date and restrict future dates
+datePickerId.max = new Date().toISOString().split("T")[0];

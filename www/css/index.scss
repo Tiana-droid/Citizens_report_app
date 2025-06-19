@@ -130,10 +130,15 @@ label, p {
     width: 90%;
     margin: 4rem auto;
 
-    input, textarea {
+    @media screen and (min-width: 900px) {
+      width: 60%;  
+    }
+
+    input, textarea, select {
       width: 100%;
       height: 40px;
       border-radius: 4px;
+      padding: 10px 0px 10px 10px;
     }
 
     #login-btn, #signup-btn {
