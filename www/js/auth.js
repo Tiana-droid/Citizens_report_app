@@ -33,10 +33,10 @@ const handleLogin = (event) => {
     return;
   }
 
-  fetch("https://api.jsonbin.io/v3/b/6604a2f3fe36e24a20a8f8c0", {
+  fetch("https://api.jsonbin.io/v3/b/68547a008960c979a5ad140e", {
     headers: {
       "X-Master-Key":
-        "$2a$10$fwgqE7ZB.7nDc7q7nyVBIu0rewQsGpOT0MUNA3LNaeVeFNwKVTJYO",
+        "$2a$10$fHlVtdS4NQvjdgfxC4Qff.8Q2tzrTB8Ba.2RRBd7EH3ijDIRl0LC2",
     },
   })
     .then((res) => res.json())

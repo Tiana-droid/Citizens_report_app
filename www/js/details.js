@@ -3,7 +3,7 @@ const incidentId = params.get("id");
 
 
 if (incidentId) {
-  fetch("https://api.jsonbin.io/v3/b/6604a2f3fe36e24a20a8f8c0/latest?_sort=day")
+  fetch("https://api.jsonbin.io/v3/b/68547a008960c979a5ad140e/latest?_sort=day")
     .then(res => res.json())
     .then(data => {
       const incident = data.record.incidents.find(item => item.id == incidentId);
@@ -19,7 +19,7 @@ if (incidentId) {
         <p><strong>Date:</strong> ${incident.date}</p>
         <p><strong>Category:</strong> ${incident.category}</p>
         <img src="data:${incident.type};base64,${incident.img}" alt="${incident.filename}" />
-        <p>${incident.content}</p>
+        <p style="text-align: justify; font-size: 18px;">${incident.content}</p>
         <div id="map" style="height: 200px;"></div>
       `;
 

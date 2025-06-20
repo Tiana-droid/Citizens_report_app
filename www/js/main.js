@@ -1,5 +1,6 @@
 const getAllIncidence =
-  "https://api.jsonbin.io/v3/b/6604a2f3fe36e24a20a8f8c0/latest?_sort=day";
+  "https://api.jsonbin.io/v3/b/68547a008960c979a5ad140e/latest?_sort=date&_sortOrder=desc";
+// Function to fetch all incidents from the API
 
 async function allIncidenceApi(url) {
   try {
@@ -33,28 +34,32 @@ function displayIncidents(incidents) {
 
     let mapHTML = "";
     if (incident.location && incident.location.lat && incident.location.lng) {
-      mapHTML = `<div id="${mapId}" style="height: 200px;"></div>`;
+      mapHTML = `<div id="${mapId}" style="height: 50vh;"></div>`;
     } else {
       `<p>No location available</p>`;
     }
 
     //HTML card showing incidence content with unique map container
     const showIncidence = `
-        <div class="card">
-        <b>${incident.date}</b>
-        <h3>${incident.title}</h3>
-        <img src="data:${incident.type};base64,${incident.img}" alt="${
-      incident.filename
-    }" />
-        <p>${incident.content}</p>
-        <p>Category: ${incident.category}</p>
-        <p>Address: ${incident.address}</p>
-         ${
-           incident.location && incident.location.lat && incident.location.lng
-             ? `${mapHTML}`
-             : `<p>No location available</p>`
-         }
-         <button onclick="goToDetails('${incident.id}')">View Details</button>
+      <div class="card">
+        <p>Posted on: ${incident.date}</p>
+        <h1 class="card-title">${incident.title}</h1>
+        <div class="card-content">
+          <div class="card-header">
+                <img src="data:${incident.type};base64,${incident.img}" alt="${incident.filename}" />
+                <p class ="card-main-content">${incident.content}</p>
+                </div>
+                
+                <div class="card-map">
+                <p class="card-map-title">Address: ${incident.address}</p>
+                ${incident.location && incident.location.lat && incident.location.lng ? `${mapHTML}` : `<p>No location available</p>`} 
+             </div>
+          </div>
+         <br/>
+
+        <button class = "app-button details_btn" onclick="goToDetails('${
+           incident.id
+         }')">View Details</button>
       </div>
     `;
 

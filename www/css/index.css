@@ -69,6 +69,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .app-page .app-button {
   padding: 9px 16px;
@@ -92,6 +93,7 @@ body {
 .app-page .filter select, .app-page .filter option {
   padding: 6px;
   text-transform: capitalize;
+  height: 40px;
 }
 .app-page .card-wrapper {
   width: 98%;
@@ -101,11 +103,54 @@ body {
   margin-top: 20px;
 }
 .app-page .card-wrapper .card {
+  width: 90%;
   background-color: rgba(27, 27, 27, 0.28);
   padding: 8px;
   border: 2px solid;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin: 0px auto 20px auto;
+}
+.app-page .card-wrapper .card .card-title {
+  font-size: 30px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.app-page .card-wrapper .card .card-content {
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (min-width: 900px) {
+  .app-page .card-wrapper .card .card-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.app-page .card-wrapper .card .card-content .card-header {
+  width: 100%;
+}
+@media screen and (min-width: 1000px) {
+  .app-page .card-wrapper .card .card-content .card-header {
+    width: 45%;
+  }
+}
+.app-page .card-wrapper .card .card-content .card-header .card-main-content {
+  text-overflow: ellipsis;
+  display: block;
+  height: 90px;
+  overflow: hidden;
+}
+.app-page .card-wrapper .card .card-content .card-map {
+  width: 100%;
+}
+@media screen and (min-width: 900px) {
+  .app-page .card-wrapper .card .card-content .card-map {
+    width: 45%;
+  }
 }
 .app-page .card-wrapper .card img {
   width: 100%;
@@ -147,6 +192,10 @@ body {
 }
 .app-page .sign-up a {
   color: #fafafa;
+}
+.app-page #incident-details {
+  width: 98%;
+  margin: auto;
 }
 .app-page footer {
   width: 100%;
